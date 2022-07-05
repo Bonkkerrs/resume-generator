@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    Hi, {{ id }}
+    <div>
+        <span>姓名：</span>{{ user.username }}
+        <span>邮箱：</span>{{ user.email }}
+        <span>GitHub：</span>{{ user.github }}
+    </div>
+
+    {% for section in section_list_temp %}
+        <div>
+            <h3>{{ section.section.section_name }}</h3>
+            {% for subsection in section.subsection_list  %}
+                <h4>{{ subsection.subsection.subsection_name }}</h4>
+                <span>{{ subsection.subsection.period }}</span>
+                {% for entry in subsection.entries %}
+                    <h5>{{ entry.text }}</h5>
+                {% endfor %}
+                {% for item in subsection.items %}
+                    {% if item.title != '-' %}
+                    <ul>
+                        <li><h5>{{ item.title }}：{{ item.text }}</h5></li>
+                    </ul>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+        </div>
+    {% endfor %}
+</body>
+</html>
